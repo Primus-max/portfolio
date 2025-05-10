@@ -10,11 +10,25 @@
           <img src="https://api.dicebear.com/7.x/identicon/svg?seed=primus" alt="avatar" />
         </div>
       </div>
-      <h1>Владимир Примус</h1>
+      <h1>Владимир Савчук</h1>
       <h2>Fullstack Developer (C# / Vue.js)</h2>
       <p class="hero-slogan">Создаю масштабируемые и эффективные решения с WOW-эффектом</p>
       <div class="hero-actions">
-        <a class="resume-btn" href="#" download>Скачать резюме</a>
+        <div class="resume-dropdown" ref="dropdownRef">
+          <button class="resume-btn" ref="btnRef" @click="toggleDropdown" type="button">
+            Скачать резюме
+            <svg style="margin-left:0.5em;vertical-align:middle;" width="18" height="18" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </button>
+          <teleport to="body">
+            <transition name="fade">
+              <ul v-if="open" class="resume-list resume-list-portal" :style="dropdownStyle">
+                <li><a :href="resumes.full" download @click="open = false">Fullstack</a></li>
+                <li><a :href="resumes.front" download @click="open = false">Frontend</a></li>
+                <li><a :href="resumes.back" download @click="open = false">Backend</a></li>
+              </ul>
+            </transition>
+          </teleport>
+        </div>
         <!-- <button class="theme-toggle" aria-label="Переключить тему">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="10" stroke="#65d6ff" stroke-width="2" fill="none"/>
@@ -27,7 +41,65 @@
 </template>
 
 <script setup>
-// Пока без логики
+import {
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+} from 'vue';
+
+const open = ref(false)
+const dropdownRef = ref(null)
+const btnRef = ref(null)
+const dropdownStyle = ref({})
+const resumes = {
+  full: '/portfolio/Savchuk-full.pdf',
+  front: '/portfolio/Savckuk-front.pdf',
+  back: '/portfolio/Savchuk-back.pdf'
+}
+
+function updateDropdownPosition() {
+  if (!btnRef.value) return;
+  const rect = btnRef.value.getBoundingClientRect();
+  dropdownStyle.value = {
+    position: 'absolute',
+    left: rect.left + window.scrollX + 'px',
+    top: rect.bottom + window.scrollY + 4 + 'px',
+    minWidth: rect.width + 'px',
+    zIndex: 9999
+  };
+}
+
+function toggleDropdown() {
+  open.value = !open.value;
+  if (open.value) {
+    nextTick(() => {
+      updateDropdownPosition();
+    });
+  }
+}
+
+function handleClickOutside(event) {
+  if (!open.value) return;
+  if (
+    dropdownRef.value &&
+    !dropdownRef.value.contains(event.target)
+  ) {
+    open.value = false;
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('mousedown', handleClickOutside);
+  window.addEventListener('scroll', updateDropdownPosition);
+  window.addEventListener('resize', updateDropdownPosition);
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('mousedown', handleClickOutside);
+  window.removeEventListener('scroll', updateDropdownPosition);
+  window.removeEventListener('resize', updateDropdownPosition);
+})
 </script>
 
 <style scoped>
@@ -182,5 +254,50 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+.resume-dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 9999;
+}
+.resume-list {
+  position: absolute;
+  left: 0;
+  top: 110%;
+  min-width: 180px;
+  background: rgba(255,255,255,0.98);
+  border-radius: 1em;
+  box-shadow: 0 4px 18px 0 #65d6ff33;
+  padding: 0.5em 0;
+  z-index: 9999;
+  text-align: left;
+  animation: fadeIn 0.2s;
+}
+.resume-list li {
+  list-style: none;
+}
+.resume-list a {
+  display: block;
+  padding: 0.7em 1.5em;
+  color: #232a3b;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.7em;
+  transition: background 0.18s, color 0.18s;
+  font-size: 1rem;
+}
+.resume-list a:hover {
+  background: linear-gradient(90deg, #65d6ff22 0%, #ff7eb322 100%);
+  color: #65d6ff;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.18s;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.resume-list-portal {
+  position: absolute !important;
+  z-index: 9999 !important;
 }
 </style> 
