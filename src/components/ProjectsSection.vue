@@ -11,6 +11,9 @@
         </div>
         <div class="projects__info">
           <div class="projects__title">{{ project.title }}</div>
+          <div class="project-badges">
+            <span v-for="badge in project.badges" :key="badge" class="project-badge">{{ badge }}</span>
+          </div>
           <div class="projects__desc">{{ project.desc }}</div>
           <div class="projects__links">
             <a v-if="project.demo" :href="project.demo" target="_blank" class="projects__link" :aria-label="'Demo проекта ' + project.title">Demo</a>
@@ -37,32 +40,56 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {
+  ref,
+  watch,
+} from 'vue';
 
 const projects = [
   {
-    title: 'TaskFlow',
-    desc: 'Таск-менеджер с real-time обновлением, drag&drop и адаптивным UI.',
-    demo: '', // нет demo-ссылки, будет модалка
-    github: '#',
+    title: 'Avatar.AI',
+    desc: 'Платформа для создания, управления и интеграции цифровых личностей (аватаров) с AI, VR/AR и блокчейном.',
+    demo: 'https://primus-max.github.io/avatar.ai/',
+    github: 'https://github.com/Primus-max/avatar.ai',
+    badges: ['Vue 3', 'Vuetify 3', 'Node.js', 'GraphQL', 'TensorFlow.js', 'OpenAI API', 'Ethereum', 'WebXR', 'Three.js'],
     color: '#232a3b',
-    icon: 'TF'
+    icon: 'AI'
   },
   {
-    title: '3D Viewer',
-    desc: 'Веб-приложение для просмотра 3D-моделей. Интерактив, быстрый рендеринг.',
-    demo: 'https://example.com', // есть demo-ссылка
-    github: '#',
+    title: 'Netmax',
+    desc: 'Многофункциональное десктопное приложение на Electron для управления сетевыми задачами, автоматизации и мониторинга.',
+    demo: '',
+    github: 'https://github.com/Primus-max/Netmax',
+    badges: ['JavaScript', 'Electron', 'HTML', 'CSS'],
     color: '#2a1e3d',
-    icon: '3D'
+    icon: 'NM'
   },
   {
-    title: 'API Dashboard',
-    desc: 'Дашборд для мониторинга API, графики, фильтры, экспорт данных.',
-    demo: '', // нет demo-ссылки, будет модалка
-    github: '#',
+    title: 'StaticRustLauncher',
+    desc: 'Минималистичный лаунчер для запуска Rust-серверов с удобным интерфейсом и статической сборкой.',
+    demo: '',
+    github: 'https://github.com/Primus-max/StaticRustLauncher',
+    badges: ['C#', '.NET', 'WPF'],
     color: '#1e3d2a',
-    icon: 'API'
+    icon: 'SRL'
+  },
+  {
+    title: 'PatternReformatter',
+    desc: 'Утилита для форматирования и преобразования текстовых паттернов с поддержкой регулярных выражений.',
+    demo: '',
+    github: 'https://github.com/Primus-max/PatternReformatter',
+    badges: ['C#', '.NET', 'WinForms'],
+    color: '#3d2a1e',
+    icon: 'PR'
+  },
+  {
+    title: 'CryptoApp',
+    desc: 'Приложение для шифрования и дешифрования данных с поддержкой различных алгоритмов.',
+    demo: '',
+    github: 'https://github.com/Primus-max/CryptoApp',
+    badges: ['C#', '.NET', 'WPF'],
+    color: '#1e2a3d',
+    icon: 'CA'
   }
 ]
 const hoverIdx = ref(null)
@@ -75,6 +102,14 @@ function openPreview(project) {
 function closePreview() {
   showModal.value = false
 }
+// Блокировка скролла body при открытии модалки
+watch(showModal, (val) => {
+  if (val) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+})
 </script>
 
 <style scoped>
@@ -113,16 +148,14 @@ function closePreview() {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  transition: transform 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s, border 0.18s, box-shadow 0.18s;
   cursor: pointer;
-  animation: fadeInUp 0.7s cubic-bezier(.4,0,.2,1);
   position: relative;
   z-index: 1;
 }
 .projects__card:hover {
-  transform: translateY(-8px) scale(1.04);
-  box-shadow: 0 8px 32px #65d6ff44, 0 0 16px 2px #65d6ff99;
-  border: 2.5px solid #65d6ff;
+  /* transform: translateY(-8px) scale(1.04); */
+  /* box-shadow: 0 8px 32px #65d6ff44, 0 0 16px 2px #65d6ff99; */
+  /* border: 2.5px solid #65d6ff; */
 }
 .projects__img {
   width: 48px;
@@ -145,6 +178,21 @@ function closePreview() {
   font-weight: 700;
   color: #65d6ff;
   margin-bottom: 0.2rem;
+}
+.project-badges {
+  margin: 0.7em 0 0.2em 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+.project-badge {
+  background: #e3f0ff;
+  color: #232a3b;
+  border-radius: 1em;
+  padding: 0.2em 0.9em;
+  font-size: 0.95em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 .projects__desc {
   font-size: 1rem;
@@ -175,12 +223,16 @@ function closePreview() {
 /* Modal styles */
 .projects__modal-backdrop {
   position: fixed;
+  inset: 0;
   z-index: 1000;
-  left: 0; top: 0; width: 100vw; height: 100vh;
-  background: rgba(20,24,34,0.55);
+  background: rgba(20,24,34,0.82);
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  transition: background 0.25s;
+  overflow: hidden;
 }
 .projects__modal-content {
   background: rgba(30,34,54,0.98);
@@ -188,11 +240,19 @@ function closePreview() {
   box-shadow: 0 8px 32px #65d6ff44;
   padding: 2.2rem 2.2rem 1.5rem 2.2rem;
   min-width: 320px;
-  max-width: 90vw;
+  max-width: 480px;
+  width: 100%;
+  min-height: 320px;
   text-align: center;
   color: #fff;
-  position: relative;
   animation: fadeInUp 0.5s cubic-bezier(.4,0,.2,1);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  word-break: break-word;
+  white-space: normal;
 }
 .projects__modal-img {
   margin: 1.2rem auto 1.2rem auto;
@@ -236,6 +296,7 @@ function closePreview() {
   .projects__modal-content {
     padding: 1.2rem 0.7rem 1rem 0.7rem;
     min-width: 0;
+    max-width: 98vw;
   }
 }
 @keyframes fadeInUp {

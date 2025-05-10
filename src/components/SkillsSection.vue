@@ -26,25 +26,54 @@ const skillGroups = [
     title: 'Frontend',
     color: '#65d6ff',
     icon: 'frontend',
-    skills: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'SCSS', 'Vuetify', 'Webpack', 'Vite', 'BEM', 'A11y']
+    skills: [
+      'JavaScript', 'TypeScript', 'Vue.js', 'Vuex', 'Pinia', 'Vuetify', 'Element+', 'PrimeVue',
+      'Tailwind CSS', 'SCSS', 'Bootstrap', 'HTML', 'CSS', 'BEM', 'A11y', 'Mobile First',
+      'Vite', 'Webpack', 'Gulp', 'Axios','REST API', 'WebSocket', 'RPC/gRPC', 'SignalR','WPF', 'WinForms'
+    ]
   },
   {
     title: 'Backend',
     color: '#ff7eb3',
     icon: 'backend',
-    skills: ['C#', 'ASP.NET Core', 'Node.js', 'Express', 'NestJS', 'PostgreSQL', 'MongoDB', 'Firebase']
+    skills: [
+      'C#', '.NET', '.NET Core', '.NET Framework', 'Node.js', 'Firebase',
+      'ASP.NET Core', 'Console Apps',
+      'MS SQL', 'PostgreSQL', 'MySQL', 'SQLite', 'Entity Framework Core', 'Dapper',
+      'RESTful', 'Minimal APIs', 'gRPC', 'SignalR'
+    ]
+  },
+  {
+    title: 'Архитектура и паттерны',
+    color: '#a1e3ff',
+    icon: 'frontend',
+    skills: [
+      'MVC', 'MVVM', 'Clean Architecture'
+    ]
   },
   {
     title: 'DevOps & Tools',
     color: '#ffd86b',
     icon: 'devops',
-    skills: ['Docker', 'Git', 'GitHub Actions', 'CI/CD', 'Jira', 'Trello']
+    skills: [
+      'Docker', 'Git', 'GitHub', 'GitHub Actions', 'CI/CD', 'Jira', 'Trello', 'GitHub Projects', 'GitHub Issues'
+    ]
   },
   {
     title: 'Тестирование',
     color: '#7fffbe',
     icon: 'test',
-    skills: ['Jest', 'Vue Test Utils', 'Playwright', 'Selenium']
+    skills: [
+      'Jest', 'xUnit', 'NUnit', 'Vue Test Utils', 'Playwright', 'Selenium', 'Puppeteer', 'Postman', 'Swagger', 'Fiddler'
+    ]
+  },
+  {
+    title: 'Принципы и документация',
+    color: '#b3a1ff',
+    icon: 'frontend',
+    skills: [
+      'Clean Code', 'SOLID', 'DRY', 'Performance Optimization', 'Storybook', 'JSDoc', 'Внутренние гайды'
+    ]
   }
 ]
 </script>
