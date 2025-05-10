@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap');
+:root {
+  --color-bg-gradient: linear-gradient(120deg, #7f53ff 0%, #5fffd2 100%);
+  --color-bg-dark: #181c2a;
+  --color-bg-light: #fff;
+  --color-accent: #ff7eb3;
+  --color-accent2: #65d6ff;
+  --color-text-main: #fff;
+  --color-text-dark: #181c2a;
+  --color-card-bg: rgba(255,255,255,0.92);
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Manrope', 'Segoe UI', Arial, sans-serif;
+  background: var(--color-bg-gradient);
+  color: var(--color-text-main);
+  transition: background 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-size: 200% 200%;
+  animation: gradientMove 8s ease-in-out infinite;
+}
+@keyframes gradientMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+#app {
+  max-width: 100vw;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+a {
+  color: var(--color-accent2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--color-accent);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Manrope', 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 0 0 0.5em 0;
+}
+button {
+  font-family: inherit;
+  border-radius: 8px;
+  border: none;
+  padding: 0.7em 1.5em;
+  font-size: 1em;
+  font-weight: 600;
+  background: var(--color-accent2);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover {
+  background: var(--color-accent);
+}
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+  }
+  #app {
+    padding: 0;
+  }
+}
