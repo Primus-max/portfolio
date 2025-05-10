@@ -148,16 +148,14 @@ watch(showModal, (val) => {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  transition: transform 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s, border 0.18s, box-shadow 0.18s;
   cursor: pointer;
-  animation: fadeInUp 0.7s cubic-bezier(.4,0,.2,1);
   position: relative;
   z-index: 1;
 }
 .projects__card:hover {
-  transform: translateY(-8px) scale(1.04);
-  box-shadow: 0 8px 32px #65d6ff44, 0 0 16px 2px #65d6ff99;
-  border: 2.5px solid #65d6ff;
+  /* transform: translateY(-8px) scale(1.04); */
+  /* box-shadow: 0 8px 32px #65d6ff44, 0 0 16px 2px #65d6ff99; */
+  /* border: 2.5px solid #65d6ff; */
 }
 .projects__img {
   width: 48px;

@@ -29,7 +29,7 @@ const skillGroups = [
     skills: [
       'JavaScript', 'TypeScript', 'Vue.js', 'Vuex', 'Pinia', 'Vuetify', 'Element+', 'PrimeVue',
       'Tailwind CSS', 'SCSS', 'Bootstrap', 'HTML', 'CSS', 'BEM', 'A11y', 'Mobile First',
-      'Vite', 'Webpack', 'Gulp', 'Axios', 'Fetch API', 'REST API', 'GraphQL', 'WebSocket', 'RPC/gRPC', 'SignalR'
+      'Vite', 'Webpack', 'Gulp', 'Axios','REST API', 'WebSocket', 'RPC/gRPC', 'SignalR','WPF', 'WinForms'
     ]
   },
   {
@@ -37,9 +37,9 @@ const skillGroups = [
     color: '#ff7eb3',
     icon: 'backend',
     skills: [
-      'C#', '.NET', '.NET Core', '.NET Framework', 'Node.js', 'Express', 'NestJS', 'Firebase',
-      'ASP.NET Core', 'WPF', 'WinForms', 'Console Apps',
-      'MS SQL', 'PostgreSQL', 'MySQL', 'SQLite', 'MongoDB', 'Entity Framework Core', 'Dapper',
+      'C#', '.NET', '.NET Core', '.NET Framework', 'Node.js', 'Firebase',
+      'ASP.NET Core', 'Console Apps',
+      'MS SQL', 'PostgreSQL', 'MySQL', 'SQLite', 'Entity Framework Core', 'Dapper',
       'RESTful', 'Minimal APIs', 'gRPC', 'SignalR'
     ]
   },
@@ -56,7 +56,7 @@ const skillGroups = [
     color: '#ffd86b',
     icon: 'devops',
     skills: [
-      'Docker', 'Git', 'GitHub', 'GitLab', 'GitHub Actions', 'CI/CD', 'Jira', 'Trello', 'GitHub Projects', 'GitHub Issues'
+      'Docker', 'Git', 'GitHub', 'GitHub Actions', 'CI/CD', 'Jira', 'Trello', 'GitHub Projects', 'GitHub Issues'
     ]
   },
   {
@@ -64,7 +64,7 @@ const skillGroups = [
     color: '#7fffbe',
     icon: 'test',
     skills: [
-      'Jest', 'xUnit', 'NUnit', 'Vue Test Utils', 'Playwright', 'Selenium'
+      'Jest', 'xUnit', 'NUnit', 'Vue Test Utils', 'Playwright', 'Selenium', 'Puppeteer', 'Postman', 'Swagger', 'Fiddler'
     ]
   },
   {
