@@ -4,6 +4,7 @@ import ContactsSection from './components/ContactsSection.vue';
 import ExperienceSection from './components/ExperienceSection.vue';
 import HeroSection from './components/HeroSection.vue';
 import ProjectsSection from './components/ProjectsSection.vue';
+import RepoAnalyzerSection from './components/RepoAnalyzerSection.vue';
 import SkillsSection from './components/SkillsSection.vue';
 </script>
 
@@ -23,6 +24,7 @@ import SkillsSection from './components/SkillsSection.vue';
       </svg>
     </div>
     <HeroSection />
+    <RepoAnalyzerSection />
     <svg class="wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="url(#grad1)" fill-opacity="0.18"/><defs><linearGradient id="grad1" x1="0" y1="0" x2="1440" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#65d6ff"/><stop offset="1" stop-color="#ff7eb3"/></linearGradient></defs></svg>
     <AboutSection />
     <svg class="wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="url(#grad2)" fill-opacity="0.18"/><defs><linearGradient id="grad2" x1="0" y1="0" x2="1440" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#ff7eb3"/><stop offset="1" stop-color="#ffd86b"/></linearGradient></defs></svg>
