@@ -20,7 +20,7 @@
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone https://github.com/yourusername/portfolio.git
+   git clone https://primus-max.github.io/portfolio
    ```
 2. Установите зависимости:
    ```bash
